@@ -52,26 +52,30 @@ public class SpellChecker
     public boolean binarySpellCheck(String word)
     {
         int leftBound = 0;
-        int rightBound = dictionary.size();
+        int rightBound = dictionary.size() - 1;
         int mid = dictionary.size() / 2;
-        while(mid != leftBound && mid != rightBound)
+        int count = 0;
+        while(leftBound <= rightBound)
         {
-            if(dictionary.get(mid) == word)
-            {
-                return true;
-            }
+            count++;
+            mid = (leftBound + rightBound) / 2;
 
-            else if(dictionary.get(mid).compareTo(word) > 0)
+            if(dictionary.get(mid).compareTo(word) > 0)
             {
-                rightBound = mid + 1;
-                mid = (rightBound - leftBound) / 2 + leftBound;
+                rightBound = mid - 1;
             }
             else if(dictionary.get(mid).compareTo(word) < 0)
             {
                 leftBound = mid + 1;
-                mid = (rightBound - leftBound) / 2 + leftBound;
+            }
+            else
+            {
+                System.out.println(count);
+                return true;
             }
         }
+        System.out.println(count);
+        return false;
     }
 
     public void importDictionary()

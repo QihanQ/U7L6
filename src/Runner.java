@@ -15,7 +15,7 @@ public class Runner
 
         while (!word.equals("q"))
         {
-            if (checker.linearSpellCheck(word))
+            if (checker.binarySpellCheck(word))
             {
                 System.out.println("-- " + word + " WAS found (so it's a word spelled correctly!)");
             }
